@@ -3,10 +3,7 @@ name: Release
 on:
   push:
     tags:
-      - "v*.*.*"
-      - "v*.*.*+*"
-      - "v*.*.*-*.*"
-      - "v*.*.*-*.*+*"
+      - "v*"
 
 env:
   GO_VERSION: 1.25.6
