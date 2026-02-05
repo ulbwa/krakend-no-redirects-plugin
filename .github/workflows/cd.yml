@@ -2,7 +2,11 @@ name: Release
 
 on:
   push:
-    tags: ["v*.*.*", "v*.*.*-alpha.*", "v*.*.*-beta.*", "v*.*.*-rc.*"]
+    tags:
+      - "v*.*.*"
+      - "v*.*.*+*"
+      - "v*.*.*-*.*"
+      - "v*.*.*-*.*+*"
 
 env:
   GO_VERSION: 1.25.6
