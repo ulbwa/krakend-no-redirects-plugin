@@ -41,8 +41,11 @@ func (r registerer) registerClients(_ context.Context, extra map[string]interfac
 		if resp.Body == nil {
 			return
 		}
-		io.Copy(w, resp.Body)
-		resp.Body.Close()
+		defer resp.Body.Close()
+		if _, err := io.Copy(w, resp.Body); err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
 
 	}), nil
 }
