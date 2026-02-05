@@ -1,0 +1,75 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*.*.*", "v*.*.*-alpha.*", "v*.*.*-beta.*", "v*.*.*-rc.*"]
+
+env:
+  GO_VERSION: 1.25.3
+
+jobs:
+  build:
+    name: Build binaries
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-24.04
+            arch: amd64
+          - os: ubuntu-24.04-arm
+            arch: arm64
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+
+      - name: Setup Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: ${{ env.GO_VERSION }}
+          cache: true
+
+      - name: Download Dependencies
+        run: go mod download
+
+      - name: Build binary
+        run: make build
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: no-redirects-linux-${{ matrix.arch }}.so
+          path: bin/no-redirects-linux-${{ matrix.arch }}.so
+
+  release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    needs: [build]
+    permissions:
+      contents: write
+
+    steps:
+      - name: Download AMD64 artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: no-redirects-linux-amd64.so
+          path: bin/
+
+      - name: Download ARM64 artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: no-redirects-linux-arm64.so
+          path: bin/
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            bin/no-redirects-linux-amd64.so
+            bin/no-redirects-linux-arm64.so
+          generate_release_notes: true
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
