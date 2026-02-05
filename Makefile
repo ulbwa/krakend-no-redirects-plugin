@@ -29,10 +29,10 @@ BINARY_NAME := no-redirects-$(GOOS)-$(GOARCH).so
 build:
 	@echo "Building for GOARCH=$(GOARCH) -> $(BINARY_NAME)"
 	@mkdir -p $(BIN_DIR)
-	CGO_ENABLED=1 GOOS=linux GOARCH=$(GOARCH) go build -buildmode=plugin -o $(BIN_DIR)/$(BINARY_NAME) .
+	CGO_ENABLED=1 GOOS=linux GOARCH=$(GOARCH) go build -buildmode=plugin -o "$(BIN_DIR)/$(BINARY_NAME)" .
 
 # ---------- clean ----------
 
 clean:
 	@echo "Cleaning build artifacts..."
-	@rm -rf $(BIN_DIR)
+	@rm -rf "$(BIN_DIR)"

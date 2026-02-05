@@ -46,7 +46,6 @@ func (r registerer) registerClients(_ context.Context, extra map[string]interfac
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
-
 	}), nil
 }
 
