@@ -41,7 +41,7 @@ func (r registerer) registerClients(_ context.Context, extra map[string]interfac
 		if resp.Body == nil {
 			return
 		}
-		defer resp.Body.Close()
+		defer resp.Body.Close() //nolint:errcheck
 		if _, err := io.Copy(w, resp.Body); err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
