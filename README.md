@@ -1,7 +1,7 @@
 # KrakenD No Redirects Plugin
 
 [![CI](https://github.com/ulbwa/krakend-no-redirects-plugin/actions/workflows/ci.yml/badge.svg)](https://github.com/ulbwa/krakend-no-redirects-plugin/actions/workflows/ci.yml)
-[![Release](https://github.com/ulbwa/krakend-no-redirects-plugin/actions/workflows/cd.yml/badge.svg)](https://github.com/ulbwa/krakend-no-redirects-plugin/actions/workflows/cd.yml)
+[![GitHub Release](https://img.shields.io/github/v/release/ulbwa/krakend-no-redirects-plugin)](https://github.com/ulbwa/krakend-no-redirects-plugin/releases/latest)
 [![Go Version](https://img.shields.io/badge/Go-1.25.6-blue.svg)](https://golang.org)
 
 A KrakenD HTTP client plugin that disables automatic redirect following. This plugin forces the HTTP client to return redirect responses (3xx) directly to the caller instead of automatically following them.
