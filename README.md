@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/ulbwa/krakend-no-redirects-plugin/actions/workflows/ci.yml/badge.svg)](https://github.com/ulbwa/krakend-no-redirects-plugin/actions/workflows/ci.yml)
 [![Release](https://github.com/ulbwa/krakend-no-redirects-plugin/actions/workflows/cd.yml/badge.svg)](https://github.com/ulbwa/krakend-no-redirects-plugin/actions/workflows/cd.yml)
-[![Go Version](https://img.shields.io/badge/Go-1.25.3-blue.svg)](https://golang.org)
+[![Go Version](https://img.shields.io/badge/Go-1.25.6-blue.svg)](https://golang.org)
 
 A KrakenD HTTP client plugin that disables automatic redirect following. This plugin forces the HTTP client to return redirect responses (3xx) directly to the caller instead of automatically following them.
 
@@ -17,7 +17,7 @@ A KrakenD HTTP client plugin that disables automatic redirect following. This pl
 ## Compatibility
 
 - **KrakenD:** 2.x
-- **Go:** 1.25.3
+- **Go:** 1.25.6
 - **Platforms:** Linux (amd64, arm64)
 
 ## Installation
@@ -176,7 +176,7 @@ The plugin replaces KrakenD's default HTTP client with a custom client that sets
 
 ### Prerequisites
 
-- Go 1.25.3 or later
+- Go 1.25.6 or later
 - Make
 - GCC (for CGO)
 
